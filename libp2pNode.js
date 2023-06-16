@@ -35,7 +35,7 @@ const node = await createLibp2p({
   addresses: {
     // To signal the addresses we want to be available, we use
     // the multiaddr format, a self describable address
-    listen: ["/ip4/0.0.0.0/tcp/0", '/ip4/182.191.70.215/tcp/4001'],
+    listen: ["/ip4/0.0.0.0/tcp/0"],
   },
   transports: [tcp()],
   streamMuxers: [yamux(), mplex()],
@@ -44,14 +44,15 @@ const node = await createLibp2p({
   peerDiscovery: [
     bootstrap({
       list: [
-        "/ip4/182.191.70.215/tcp/4001/p2p/12D3KooWEiUjPkRtEJ2tfkRSH7eYKvCPdCf64FFLSN1C9ce6rXoj",
+        "/ip4/46.101.133.110/tcp/4001/p2p/12D3KooWKXDA5q8YwJFR18puFv3TA1pRATg4VP6nWFfo7zTEPe5t",
       ],
     }),
   ],
 });
 
 node.addEventListener("peer:connect", (evt) => {
-  console.log("Connection established to:", evt.detail.remotePeer.toString()); // Emitted when a new connection has been created
+  console.log("Connection established to:", evt.detail); // Emitted when a new connection has been created
+  console.log("peers ---", node.getPeers())
 });
 
 node.addEventListener("peer:discovery", (evt) => {

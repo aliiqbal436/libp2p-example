@@ -35,7 +35,7 @@ const node = await createLibp2p({
   addresses: {
     // To signal the addresses we want to be available, we use
     // the multiaddr format, a self describable address
-    listen: ["/ip4/0.0.0.0/tcp/4001"],
+    listen: ["/ip4/0.0.0.0/tcp/3010"],
   },
   transports: [tcp()],
   streamMuxers: [yamux(), mplex()],

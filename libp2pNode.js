@@ -8,7 +8,7 @@ import { createEd25519PeerId } from "@libp2p/peer-id-factory";
 import { peerIdFromKeys } from "@libp2p/peer-id";
 import { kadDHT } from "@libp2p/kad-dht";
 import fs from "fs";
-
+import { multiaddr } from '@multiformats/multiaddr'
 if (!fs.existsSync("config.json")) {
   const peerId = await createEd25519PeerId();
   const peerIdObject = {
@@ -35,7 +35,7 @@ const node = await createLibp2p({
   addresses: {
     // To signal the addresses we want to be available, we use
     // the multiaddr format, a self describable address
-    listen: ["/ip4/0.0.0.0/tcp/0"],
+    listen: ["/ip4/0.0.0.0/tcp/4001"],
   },
   transports: [tcp()],
   streamMuxers: [yamux(), mplex()],
@@ -59,9 +59,9 @@ node.addEventListener("peer:discovery", (evt) => {
   // No need to dial, autoDial is on
   console.log("Discovered:", evt.detail.id.toString());
 });
-
-await node.start();
-
+// await node.dial(multiaddr("/ip4/46.101.133.110/tcp/4001/p2p/12D3KooWKXDA5q8YwJFR18puFv3TA1pRATg4VP6nWFfo7zTEPe5t"));
+// await node.start();
+console.log('mutl ===', node.getMultiaddrs())
 
 // const bootstrapAddress = multiaddr('/ip4/182.191.70.215/tcp/4001/p2p/12D3KooWEiUjPkRtEJ2tfkRSH7eYKvCPdCf64FFLSN1C9ce6rXoj');
 // await node.dial(bootstrapAddress);

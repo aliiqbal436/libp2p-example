@@ -44,7 +44,7 @@ const node = await createLibp2p({
   peerDiscovery: [
     bootstrap({
       list: [
-        "/ip4/46.101.133.110/tcp/4001/p2p/12D3KooWKXDA5q8YwJFR18puFv3TA1pRATg4VP6nWFfo7zTEPe5t",
+        "/ip4/46.101.133.110/tcp/3010/p2p/12D3KooWKXDA5q8YwJFR18puFv3TA1pRATg4VP6nWFfo7zTEPe5t",
       ],
     }),
   ],
@@ -59,8 +59,8 @@ node.addEventListener("peer:discovery", (evt) => {
   // No need to dial, autoDial is on
   console.log("Discovered:", evt.detail.id.toString());
 });
-// await node.dial(multiaddr("/ip4/46.101.133.110/tcp/4001/p2p/12D3KooWKXDA5q8YwJFR18puFv3TA1pRATg4VP6nWFfo7zTEPe5t"));
-// await node.start();
+// await node.dial(multiaddr("/ip4/46.101.133.110/tcp/3010/p2p/12D3KooWKXDA5q8YwJFR18puFv3TA1pRATg4VP6nWFfo7zTEPe5t"));
+await node.start();
 console.log('mutl ===', node.getMultiaddrs())
 
 // const bootstrapAddress = multiaddr('/ip4/182.191.70.215/tcp/4001/p2p/12D3KooWEiUjPkRtEJ2tfkRSH7eYKvCPdCf64FFLSN1C9ce6rXoj');
